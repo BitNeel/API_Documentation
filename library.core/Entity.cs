@@ -3,13 +3,13 @@
 namespace library.core
 {
     /// <summary>
-    /// Entity is the base class of all the Model classes in this project. Every model that inherits from entity automatically
+    /// Entity is the base interface of all the Model classes in this project. Every model that inherits from entity automatically
     /// gets the primary key [ID] and mantainance columns CreatedOn and UpdatedOn
     /// </summary>
-    public abstract class Entity
+    public class Entity
     {
-        protected long ID {  get; set; }
-        protected SqlDateTime CreatedOn { get; set; }
-        protected SqlDateTime UpdatedOn { get; set;}
+        public long ID {  get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime UpdatedOn { get; set;}
     }
 }

@@ -1,10 +1,10 @@
-﻿using library.core;
-using library.data;
+﻿using System.Linq.Expressions;
+using library.core;
 using Microsoft.EntityFrameworkCore;
 
 namespace library.Infrastructure
 {
-    internal class BookRepository : IRepository<Book>
+    public class BookRepository : IRepository<Book>
     {
         private readonly LibraryDBContext _dbContext;
 
@@ -19,14 +19,14 @@ namespace library.Infrastructure
             return book;
         }
 
-        public async Task<List<Book>> ListAsync()
+        public IQueryable<Book> ListAsync()
         {
-            return await _dbContext.Books.ToListAsync();
+            return  _dbContext.Books;
         }
 
-        public async Task<List<Book>> ListAsync(Func<Book, bool> predicate)
+        public IQueryable<Book> ListAsync(Expression<Func<Book, bool>> predicate)
         {
-            return await _dbContext.Books.Where(predicate).AsQueryable().ToListAsync();
+            return _dbContext.Books.Where(predicate);
         }
     }
 }

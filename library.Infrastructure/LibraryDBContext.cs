@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace library.data
+namespace library.Infrastructure
 {
     public class LibraryDBContext(DbContextOptions<LibraryDBContext> options, IConfiguration config) : DbContext(options)
     {

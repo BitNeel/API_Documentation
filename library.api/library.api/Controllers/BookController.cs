@@ -17,12 +17,12 @@ namespace library.api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<BookDto>>> SearchAllBooks()
+        public async Task<ActionResult<List<BookDto>>> SearchAllBooks(string? bookName, string? ISBN)
         {
-            List<BookDto> bookList = await _bookService.GetAllBooks();
+            List<BookDto> bookList = await _bookService.BooksSearch(bookName, ISBN);
             foreach (var book in bookList)
             {
-                book._links = new EntityLink { Self = Url.Action(nameof(GetBookbyId), "Book", new { Id = book.Id }, Request.Scheme) };
+                book._links = new EntityLink { Self = Url.Action(action: nameof(GetBookbyId), controller: "Book", values: new { Id = book.Id }, protocol: Request.Scheme) };
             }
             return Ok(bookList);
         }

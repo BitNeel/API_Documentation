@@ -5,8 +5,6 @@ namespace library.application
     public interface IBookService
     {
         Task<Book?> GetBookByID(long id);
-        Task<List<BookDto>> SearchBookByName(string name);
-        Task<List<BookDto>> SearchBookByISBN(string ISBN);
-        Task<List<BookDto>> GetAllBooks();
+        Task<List<BookDto>> BooksSearch(string? BookName, string? ISBN);
     }
 }

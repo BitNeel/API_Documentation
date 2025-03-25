@@ -16,6 +16,10 @@ namespace library.Infrastructure
         public async Task<Book?> GetEntityById(long id)
         {
             Book? book = await _dbContext.Books.FindAsync(id);
+            if (book != null)
+            {
+                await _dbContext.Entry(book).Reference(b => b.Category).LoadAsync();
+            }
             return book;
         }
 

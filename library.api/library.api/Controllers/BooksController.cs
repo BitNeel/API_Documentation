@@ -32,7 +32,7 @@ namespace library.api.Controllers
             List<BookDto> bookList = await _bookService.BooksSearch(bookName, ISBN);
             foreach (var book in bookList)
             {
-                book._links = new EntityLink { Self = Url.Action(action: nameof(GetBookbyId), controller: "Books", values: new { Id = book.Id }, protocol: Request.Scheme) };
+                book._links = new EntityLink { Self = Url.Action(action: nameof(GetBookbyId), controller: nameof(BooksController).Replace("Controller",""), values: new { Id = book.Id }, protocol: Request.Scheme) };
             }
             return Ok(bookList);
         }
